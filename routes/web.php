@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Listing;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,21 +14,28 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/listings/{id}',function($id){
+    // dd(Listing::find(1));
+    return view('listing',['listing'=> Listing::find($id)]);
+
+});
 
 Route::get('/', function () {
-    return view('lsitings', [
+    return view('listings', [
         'heading' => 'Latest Listing',
-        'listings' => [[
-            'id' => 1,
-            'title' => 'Listing One',
-            'description' => 'Lorem Ipsum is simply dummy, Lorem Ipsum, aute irut non ante. Lorem Ipsum et'
-        ], [
-            'id' => 2,
-            'title' => 'Listing Two',
-            'description' => 'Lorem Ipsum is simply dummy, Lorem Ipsum, aute irut non ante. Lorem Ipsum et'
-        ]]
+        'listings' =>  Listing::all()
+        // [[
+        //     'id' => 1,
+        //     'title' => 'Listing One',
+        //     'description' => 'Lorem Ipsum is simply dummy, Lorem Ipsum, aute irut non ante. Lorem Ipsum et'
+        // ], [
+        //     'id' => 2,
+        //     'title' => 'Listing Two',
+        //     'description' => 'Lorem Ipsum is simply dummy, Lorem Ipsum, aute irut non ante. Lorem Ipsum et'
+        // ]]
     ]);
 });
+
 
 
 // Route::get('/hello', function () {
