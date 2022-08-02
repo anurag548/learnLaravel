@@ -7,7 +7,7 @@
     <p>
         {{ $listing['description']}}
     </p>
-     @endforeach;
+     @endforeach
 @else 
     <h2>No listings founds</h2>
 @endunless
