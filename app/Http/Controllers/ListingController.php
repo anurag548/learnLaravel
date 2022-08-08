@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
-
+use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
 
 class ListingController extends Controller
 {
     //
     //show all listings
-    public function index(){
+    public function index(Request $request){
+        // dd(request('tag'));
         return view('listing.index', [
-            'listings' =>  Listing::all()
+            'listings' =>  Listing::latest()->filter(request(['tag','search']))->get()
             // [[
             //     'id' => 1,
             //     'title' => 'Listing One',
@@ -28,5 +29,10 @@ class ListingController extends Controller
     //Show single listing
     public function show(Listing $listing){
         return view('listing.show',['listing'=> $listing]);
+    }
+
+    //create listing
+    public function create(){
+        return view('listing.create');
     }
 }

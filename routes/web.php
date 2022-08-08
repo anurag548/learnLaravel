@@ -15,11 +15,11 @@ use App\Models\Listing;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/listings/{listing}',[ListingController::class,'show']);
 
 Route::get('/', [ListingController::class, 'index']);
 
-
+Route::get('/listings/create',[ListingController::class,'create']);
+Route::get('/listings/{listing}',[ListingController::class,'show']);
 
 // Route::get('/hello', function () {
 //     return response("<h1>Hello World</h1>", 200)
